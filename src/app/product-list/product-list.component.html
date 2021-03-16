@@ -1,0 +1,43 @@
+<div class="container">
+    <app-shopping-cart></app-shopping-cart>
+    <div class="row">
+        <div class="col-md-9"></div>
+        <div class="dropdown">
+            <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">
+                <i class="ion-android-apps"></i>Sort by
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#" data-value="action" id="select1" (click)="sortProducts('price')">Price</a></li>
+                <li><a href="#" data-value="another action" id="select2" (click)="sortProducts('a-z')">A-Z</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row px-5 pt-5">
+        <div class="col-md-4 mt-4 mt-sm-0 card-container" *ngFor="let product of productList">
+            <div class="card text-center product p-4 pt-5 border-0 h-100 rounded-0">
+                <a [routerLink]="['/details', product.name]"></a><img class="img-fluid d-block mx-auto"
+                    src="assets/images/{{product.name}}.jpg" alt="{{product.name}}">
+
+                <div class="card-body p-4 py-0 h-xs-440p">
+                    <a [routerLink]="['/details', product.name]">
+                        <h5 class="card-title font-weight-semi-bold mb-3 w-xl-220p mx-auto">{{product.name | titlecase}}
+                        </h5>
+                    </a>
+                    <p class="description">{{product.description|slice:0:50}}</p>
+                    <p class="price">{{product.price|currency:'GBP'}}</p>
+                </div>
+                <p class="btn w-100 px-4 mx-auto">
+                    <button type="button" class="btn btn-primary" (click)="addTocart(product)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-basket2-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M5.929 1.757a.5.5 0 1 0-.858-.514L2.217 6H.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h.623l1.844 6.456A.75.75 0 0 0 3.69 15h8.622a.75.75 0 0 0 .722-.544L14.877 8h.623a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1.717L10.93 1.243a.5.5 0 1 0-.858.514L12.617 6H3.383L5.93 1.757zM4 10a1 1 0 0 1 2 0v2a1 1 0 1 1-2 0v-2zm3 0a1 1 0 0 1 2 0v2a1 1 0 1 1-2 0v-2zm4-1a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1z">
+                            </path>
+                        </svg>
+                    </button>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
